@@ -13,6 +13,7 @@ import (
 func main() {
 	log.SetOutput(os.Stdout)
 
+	log.Println("Started")
 	u := youtuber.YouTuberUC{}
 
 	fileName, err := u.Download("https://www.youtube.com/watch?v=IY_4M7crOp4")
