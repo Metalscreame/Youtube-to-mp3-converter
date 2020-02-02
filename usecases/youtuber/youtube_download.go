@@ -19,7 +19,8 @@ func (yt *YouTuberUC) Download(url string) (fileName string, err error) {
 		return "", fmt.Errorf("failed to get video info %v", err)
 	}
 
-	file, err := os.Create(fmt.Sprintf(tempFile, time.Now().Format("Mon Jan 3 04 00 PM")))
+	fileName = fmt.Sprintf(tempFile, time.Now().Format("Mon Jan 3 04 00 PM"))
+	file, err := os.Create(fileName)
 	if err != nil {
 		return
 	}
@@ -30,5 +31,5 @@ func (yt *YouTuberUC) Download(url string) (fileName string, err error) {
 		return
 	}
 
-	return tempFile, nil
+	return fileName, nil
 }
