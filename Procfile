@@ -1,1 +1,1 @@
-app: Youtube-to-mp3-converter
+app: youtubemp3-converter
