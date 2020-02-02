@@ -16,8 +16,10 @@ func main() {
 	}
 
 	mp3 := audio.FFmpegConverter{}
-	_, err = mp3.ConvertToMp3(fileName)
+	audioFile, err := mp3.ConvertToMp3(fileName)
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	log.Printf("Finished %v", audioFile)
 }
