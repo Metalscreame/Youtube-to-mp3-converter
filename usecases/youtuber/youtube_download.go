@@ -3,12 +3,13 @@ package youtuber
 import (
 	"fmt"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/rylio/ytdl"
 )
 
-const tempFile = "temp_%v.mp4"
+const tempFile = "%v_%v.mp4"
 
 type YouTuberUC struct{}
 
@@ -19,7 +20,10 @@ func (yt *YouTuberUC) Download(url string) (fileName string, err error) {
 		return "", fmt.Errorf("failed to get video info %v", err)
 	}
 
-	fileName = fmt.Sprintf(tempFile, time.Now().Format("Mon Jan 3 04 00 PM"))
+	title := strings.ReplaceAll(vid.Title,"|", "")
+	title = strings.ReplaceAll(vid.Title,":", "")
+
+	fileName = fmt.Sprintf(tempFile, title, time.Now().Format("Mon Jan 3_04_00 PM"))
 	file, err := os.Create(fileName)
 	if err != nil {
 		return
