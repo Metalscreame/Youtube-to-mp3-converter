@@ -1,1 +1,1 @@
-app: bin/Youtube-to-mp3-converter
+app: bin/youtubemp3-converter
