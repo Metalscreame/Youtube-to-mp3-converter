@@ -1,1 +1,1 @@
-web: bin/Youtube-to-mp3-converter
+web: Youtube-to-mp3-converter
