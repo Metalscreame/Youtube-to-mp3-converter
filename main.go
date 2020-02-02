@@ -2,12 +2,15 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"github.com/Metalscreame/Youtube-to-mp3-converter/usecases/audio"
 	"github.com/Metalscreame/Youtube-to-mp3-converter/usecases/youtuber"
 )
 
 func main() {
+	log.SetOutput(os.Stdout)
+	
 	u := youtuber.YouTuberUC{}
 
 	fileName, err := u.Download("https://www.youtube.com/watch?v=IY_4M7crOp4")
