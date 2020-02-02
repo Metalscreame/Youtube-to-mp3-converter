@@ -28,8 +28,14 @@ func main() {
 	}
 
 	log.Printf("Finished %v", audioFile)
+
+	port, ok := os.LookupEnv("PORT")
+	if !ok {
+		log.Fatal("PORT is required\nFor localhosts setup sys env \"PORT\" as 8080 ")
+	}
+
 	http.HandleFunc("/", Handler)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":"+port, nil)
 }
 
 func Handler(rw http.ResponseWriter, r *http.Request) {
