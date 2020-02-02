@@ -1,7 +1,9 @@
 package main
 
 import (
+	"io/ioutil"
 	"log"
+	"net/http"
 	"os"
 
 	"github.com/Metalscreame/Youtube-to-mp3-converter/usecases/audio"
@@ -10,7 +12,7 @@ import (
 
 func main() {
 	log.SetOutput(os.Stdout)
-	
+
 	u := youtuber.YouTuberUC{}
 
 	fileName, err := u.Download("https://www.youtube.com/watch?v=IY_4M7crOp4")
@@ -25,4 +27,17 @@ func main() {
 	}
 
 	log.Printf("Finished %v", audioFile)
+	http.HandleFunc("/", Handler)
+	http.ListenAndServe(":8080", nil)
+}
+
+func Handler(rw http.ResponseWriter, r *http.Request) {
+	files, err := ioutil.ReadDir("./")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, f := range files {
+		log.Println(f.Name())
+	}
 }
